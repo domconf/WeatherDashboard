@@ -1,0 +1,23 @@
+body {
+    background-color: #323643 !important;
+}
+
+h1 {
+    height: 100px;
+    text-align: center;
+    padding-top: 20px;
+    border: solid #606470 2px;
+    color: #93deff;
+}
+
+#searchBtn {
+    width: 100px;
+    margin-top: 10px;
+    border: solid #606470 2px;
+    background-color: #93deff;
+    color: #323643;
+}
+
+h5 {
+    color: #93deff;
+}
