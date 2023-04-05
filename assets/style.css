@@ -21,3 +21,17 @@ h1 {
 h5 {
     color: #93deff;
 }
+
+.cards {
+    margin-top: 10px;
+    padding: 5px;
+    border: solid #606470 2px;
+}
+
+h3 {
+    color: #93deff;
+}
+
+.weathercard {
+    color: #93deff;
+}
