@@ -34,4 +34,13 @@ h3 {
 
 .weathercard {
     color: #93deff;
+    background-color: #606470;
+    width: 200px;
+    padding-left: 5px;
+}
+
+.recents {
+    margin-top: 10px;
+    padding: 5px;
+    border: solid #606470 2px;
 }
