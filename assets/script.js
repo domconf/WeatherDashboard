@@ -10,4 +10,4 @@ const currentIconEl = document.querySelector('#current-icon');
 const forecastContainer = document.querySelector('#forecast-container');
 const forecastCards = document.querySelectorAll(".card");
 const searchContainer = document.querySelector('#search-container');
-const storedCities = document.querySelector('storedCities')
+const storedCities = document.querySelector('storedCities');
