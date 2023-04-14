@@ -78,3 +78,51 @@ function currentWeather(cityLat, cityLon) {
             weatherForecast(cityLat, cityLon);
         })
 }
+
+function weatherForecast(cityLat, cityLon) {
+    const forecastQueryUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLon}&appid=${apiKey}&units=imperial`;
+    fetch(forecastQueryUrl)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data)
+
+            for (i = 7; i < data.list.length; i = i + 8) {
+                let resultCard = document.createElement('div');
+                resultCard.classList.add('card', 'm-1');
+                resultCard.style.width = '10rem';
+
+                let resultBody = document.createElement('div');
+                resultBody.classList.add('card-body');
+                resultCard.append(resultBody);
+
+                let forecastIconEl = document.createElement('p');
+
+                let forecastIcon = data.list[i].weather[0].icon;
+
+                let forecastIconURL = `http://openweathermap.org/img/wn/${forecastIcon}.png`;
+                forecastIconEl.innerHTML = '<img src="' + forecastIconURL + '"></img>';
+
+                let forecastDateEl = document.createElement('p');
+                forecastDateEl.innerHTML = data.list[i].dt_txt;
+
+                let forecastTempEl = document.createElement('p');
+                forecastTempEl.innerHTML = 'Temp: ' + data.list[i].main.temp + '°F';
+
+                let forecastHumidEl = document.createElement('p');
+                forecastHumidEl.innerHTML = 'Humidity: ' + data.list[i].main.humidity + '%';
+
+                let forecastWindEl = document.createElement('p');
+                forecastWindEl.innerHTML = 'Wind Speed: ' + data.list[i].wind.speed + 'mph';
+                resultBody.append(forecastDateEl, forecastIconEl, forecastTempEl, forecastHumidEl, forecastWindEl);
+                forecastContainer.append(resultCard);
+
+            }
+
+        })
+}
+
