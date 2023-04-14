@@ -46,3 +46,35 @@ function getCityParams() {
         })
 }
 
+function currentWeather(cityLat, cityLon) {
+    const currentQueryURL = `https://api.openweathermap.org/data/2.5/weather?lat=${cityLat}&lon=${cityLon}&appid=${apiKey}&units=imperial`;
+    fetch(currentQueryURL)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data)
+            let currentIcon = data.weather[0].icon
+
+            let currentIconURL = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
+
+            let currentTemp = data.main.temp;
+
+            let currentHumid = data.main.humidity;
+
+            let currentWind = data.wind.speed;
+
+            let currentDate = data.dt;
+
+            let currentDateConvert = Intl.DateTimeFormat('en-US').format(currentDate * 1000);
+            currentDateEl.textContent = currentDateConvert;
+            currentIconEl.innerHTML = '<img src="' + currentIconURL + '"></img>';
+            currentTempEl.textContent = currentTemp;
+            currentHumidityEl.textContent = currentHumid;
+            currentWindEl.textContent = currentWind;
+            weatherForecast(cityLat, cityLon);
+        })
+}
