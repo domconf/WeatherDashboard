@@ -164,3 +164,19 @@ function prevSearchSubmit(buttonEl) {
 
     })
 }
+
+citySearchBtn.addEventListener('click', searchSubmit);
+citySearchBtn.addEventListener('click', function (event) {
+    event.preventDefault();
+    let cities = JSON.parse(localStorage.getItem("cities")) || [];
+    let cityText = cityInput.value;
+    if (cityText === "") {
+        return;
+    }
+    cities.push(cityText);
+    cityInput.value = "";
+    localStorage.setItem('cities', JSON.stringify(cities));
+})
+
+getCityParams();
+renderSearches();
