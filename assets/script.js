@@ -126,3 +126,41 @@ function weatherForecast(cityLat, cityLon) {
         })
 }
 
+function searchSubmit(event) {
+    event.preventDefault();
+
+    if (!cityInput.value) {
+        console.error('You need a search input value!');
+        return;
+    }
+    const queryString = './index.html?q=' + cityInput.value + '&apikey=' + apiKey;
+    location.assign(queryString);
+    console.log(queryString);
+}
+
+function renderSearches() {
+    const storedCities = JSON.parse(localStorage.getItem("cities"));
+    let cities = storedCities
+    if (!cities) {
+        console.log('no saved inputs yet')
+    } else {
+        for (i = 0; i < cities.length; i++) {
+            let city = cities[i];
+            let buttonEl = document.createElement('button');
+            buttonEl.classList.add('btnEl', 'btn', 'btn-info', 'm-2');
+            buttonEl.innerHTML = city;
+
+            prevSearchSubmit(buttonEl)
+        }
+    }
+}
+
+function prevSearchSubmit(buttonEl) {
+    buttonEl.addEventListener('click', function (event) {
+        event.preventDefault();
+        prevQueryString = './index.html?q=' + buttonEl.innerHTML + '&apikey=' + apiKey;
+        location.assign(prevQueryString);
+        console.log(prevQueryString);
+
+    })
+}
